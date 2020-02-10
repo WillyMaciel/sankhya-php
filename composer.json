@@ -1,0 +1,23 @@
+{
+    "name": "willymaciel/sankhya",
+    "description": "Cliente para WebService da Sankhya",
+    "type": "library",
+    "require": {
+        "tightenco/collect": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Willy Bernardes Maciel",
+            "email": "willy_maciel@live.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "WillyMaciel\\Sankhya\\": "src/"
+        },
+        "files": [
+            "src/Helpers/Helper.php"
+        ]
+    }
+}
