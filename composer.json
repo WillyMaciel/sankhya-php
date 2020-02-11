@@ -11,7 +11,7 @@
             "email": "willy_maciel@live.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "dev-master",
     "autoload": {
         "psr-4": {
             "WillyMaciel\\Sankhya\\": "src/"
@@ -20,6 +20,5 @@
             "src/Helpers/Helper.php"
         ]
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }
