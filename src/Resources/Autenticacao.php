@@ -34,7 +34,7 @@ class Autenticacao extends BaseResource
         $serviceName = $this->getFullServiceName('login');
         $body = $this->toXml($body, $serviceName);
 
-        $endPoint = $this->getFullUri('login');
+        $endPoint = $this->getUri('login');
 
         $response = $this->client->get($endPoint, $body);
         $this->jSessionId = $response->responseBody->jsessionid;
@@ -44,7 +44,7 @@ class Autenticacao extends BaseResource
 
     public function logout()
     {
-        $endPoint = $this->getFullUri('logout');
+        $endPoint = $this->getUri('logout');
         $response = $this->client->get($endPoint);
 
         if($response->status == 1)

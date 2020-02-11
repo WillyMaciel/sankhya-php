@@ -15,6 +15,10 @@ class SwServiceInvoker
     private $enderecoServidor;
     private $jSessionId;
 
+    /**
+     * @param string
+     * @param Client|null
+     */
     function __construct(string $enderecoServidor, Client $client = NULL)
     {
         $this->enderecoServidor = $enderecoServidor;
@@ -30,7 +34,12 @@ class SwServiceInvoker
         $this->client = $client;
     }
 
-    public function login($nomeUsuario, $senha)
+    /**
+     * @param  string $nomeUsuario
+     * @param  string $senha //senha em plain text ou MD5 concatenando o nome do usuário com a senha.
+     * @return void
+     */
+    public function login(string $nomeUsuario, string $senha)
     {
         $autenticacao = new Autenticacao($this->client);
         $this->jSessionId = $autenticacao->login($nomeUsuario, $senha);
@@ -51,6 +60,10 @@ class SwServiceInvoker
         }
     }
 
+    /**
+     * @param  string $query
+     * @return Collection
+     */
     public function dbExplorer($query)
     {
         $dbExplorer = new DbExplorerSp($this->client);

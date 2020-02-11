@@ -19,17 +19,12 @@ abstract class BaseResource
         $this->client = $client;
     }
 
-    protected static function getUri()
-    {
-        return static::MODULO . "/service.sbr?serviceName=" . STATIC::SERVICE_NAME;
-    }
-
-    protected function getFullServiceName($methodName)
+    protected function getServiceName(string $methodName)
     {
         return STATIC::SERVICE_NAME . ".$methodName";
     }
 
-    protected function getFullUri($methodName)
+    protected function getUri(string $methodName)
     {
         return static::MODULO . "/service.sbr?serviceName=" . STATIC::SERVICE_NAME . '.' . $methodName;
     }

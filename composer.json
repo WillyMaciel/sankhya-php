@@ -1,8 +1,11 @@
 {
     "name": "willymaciel/sankhya-php",
-    "description": "Cliente para WebService da Sankhya",
+    "description": "API em PHP para integração com WebService da Sankhya",
+    "keywords": ["sankhya", "api", "sdk"],
+    "license": "MIT",
     "type": "library",
     "require": {
+        "php": ">=7.1",
         "tightenco/collect": "6.*"
     },
     "authors": [
@@ -11,7 +14,6 @@
             "email": "willy_maciel@live.com"
         }
     ],
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "WillyMaciel\\Sankhya\\": "src/"
@@ -19,6 +21,5 @@
         "files": [
             "src/Helpers/Helper.php"
         ]
-    },
-    "prefer-stable": true
+    }
 }

@@ -13,9 +13,15 @@ class DbExplorerSp extends BaseResource
     CONST MODULO = 'mge';
     CONST SERVICE_NAME = 'DbExplorerSP';
 
-    public function executeQuery($query)
+    /**
+     * Executa Query no Servidor (SOMENTE SELECT).
+     *
+     * @param  string $query
+     * @return Collection
+     */
+    public function executeQuery(string $query)
     {
-        $fullServiceName = $this->getFullServiceName('executeQuery');
+        $fullServiceName = $this->getServiceName('executeQuery');
 
         $body = [
             'serviceName' => $fullServiceName,
@@ -26,11 +32,15 @@ class DbExplorerSp extends BaseResource
 
         $body = json_encode($body);
 
-        $response = $this->client->get(self::getFullUri('executeQuery'), $body);
+        $response = $this->client->get(self::getUri('executeQuery'), $body);
 
         return $this->createCollection($response);
     }
 
+    /**
+     * @param  mixed $response
+     * @return Collection
+     */
     private function createCollection($response)
     {
         if(count($response->responseBody->rows) <= 0)
