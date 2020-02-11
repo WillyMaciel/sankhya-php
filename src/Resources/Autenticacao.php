@@ -31,7 +31,7 @@ class Autenticacao extends BaseResource
             'INTERNO2'  => $this->interno2
         ];
 
-        $serviceName = $this->getFullServiceName('login');
+        $serviceName = $this->getServiceName('login');
         $body = $this->toXml($body, $serviceName);
 
         $endPoint = $this->getUri('login');
