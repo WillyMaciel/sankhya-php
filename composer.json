@@ -3,7 +3,7 @@
     "description": "Cliente para WebService da Sankhya",
     "type": "library",
     "require": {
-        "tightenco/collect": "dev-master"
+        "tightenco/collect": "6.*"
     },
     "authors": [
         {
@@ -11,7 +11,7 @@
             "email": "willy_maciel@live.com"
         }
     ],
-    "minimum-stability": "dev-master",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "WillyMaciel\\Sankhya\\": "src/"
