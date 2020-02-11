@@ -1,5 +1,5 @@
 {
-    "name": "willymaciel/sankhya",
+    "name": "willymaciel/sankhya-php",
     "description": "Cliente para WebService da Sankhya",
     "type": "library",
     "require": {
