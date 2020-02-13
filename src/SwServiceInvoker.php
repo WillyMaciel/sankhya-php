@@ -4,8 +4,10 @@ namespace WillyMaciel\Sankhya;
 
 use WillyMaciel\Sankhya\Clients\Client;
 use WillyMaciel\Sankhya\Clients\CurlClient;
-use WillyMaciel\Sankhya\Resources\Autenticacao;
-use WillyMaciel\Sankhya\Resources\DbExplorerSp;
+use WillyMaciel\Sankhya\Services\Autenticacao;
+use WillyMaciel\Sankhya\Services\DbExplorerSp;
+use WillyMaciel\Sankhya\Services\CacSp;
+use WillyMaciel\Sankhya\Models\Nota;
 /**
  *
  */
@@ -69,5 +71,12 @@ class SwServiceInvoker
         $dbExplorer = new DbExplorerSp($this->client);
 
         return $dbExplorer->executeQuery($query);
+    }
+
+    public function incluirNota(Nota $nota)
+    {
+        $cacSp = new CacSp($this->client);
+
+        return $cacSp->incluirNota($nota);
     }
 }

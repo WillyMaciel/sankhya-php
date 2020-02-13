@@ -1,15 +1,18 @@
 <?php
 
-namespace WillyMaciel\Sankhya\Resources;
+namespace WillyMaciel\Sankhya\Services;
 
 use WillyMaciel\Sankhya\Clients\Client;
 use Tightenco\Collect\Support\Collection;
+use WillyMaciel\Sankhya\Traits\JsonRequest;
 
 /**
  *
  */
-class DbExplorerSp extends BaseResource
+class DbExplorerSp extends BaseService
 {
+    use JsonRequest;
+
     CONST MODULO = 'mge';
     CONST SERVICE_NAME = 'DbExplorerSP';
 
@@ -23,14 +26,11 @@ class DbExplorerSp extends BaseResource
     {
         $fullServiceName = $this->getServiceName('executeQuery');
 
-        $body = [
-            'serviceName' => $fullServiceName,
-            'requestBody' => [
-                'sql' => str_replace(array("\r", "\n"), '', $query)
-            ]
+        $data = [
+            'sql' => str_replace(array("\r", "\n"), '', $query)
         ];
 
-        $body = json_encode($body);
+        $body = $this->makeServiceRequest($fullServiceName, $data);
 
         $response = $this->client->get(self::getUri('executeQuery'), $body);
 
@@ -38,6 +38,7 @@ class DbExplorerSp extends BaseResource
     }
 
     /**
+     * Manipula os resultados para criar uma Collection
      * @param  mixed $response
      * @return Collection
      */

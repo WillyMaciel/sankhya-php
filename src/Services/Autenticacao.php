@@ -1,16 +1,16 @@
 <?php
 
-namespace WillyMaciel\Sankhya\Resources;
+namespace WillyMaciel\Sankhya\Services;
 
 use WillyMaciel\Sankhya\Clients\Client;
-use WillyMaciel\Sankhya\Traits\Xmlable;
+use WillyMaciel\Sankhya\Traits\XmlRequest;
 
 /**
  *
  */
-class Autenticacao extends BaseResource
+class Autenticacao extends BaseService
 {
-    use Xmlable;
+    use XmlRequest;
 
     CONST MODULO = 'mge';
     CONST SERVICE_NAME = 'MobileLoginSP';
@@ -20,6 +20,12 @@ class Autenticacao extends BaseResource
     private $interno2;
     private $jSessionId;
 
+    /**
+     * Autentica usuário no servidor Sankhya
+     * @param  string $nomusu  Nome do usuário Sankhya
+     * @param  string $interno Senha do usuário em plaintext ou md5 do login concatenado com a senha
+     * @return string          Se logado, retorna o JSessionId
+     */
     public function login($nomusu, $interno)
     {
         $this->nomusu = strtoupper($nomusu);
@@ -32,7 +38,7 @@ class Autenticacao extends BaseResource
         ];
 
         $serviceName = $this->getServiceName('login');
-        $body = $this->toXml($body, $serviceName);
+        $body = $this->makeServiceRequest($serviceName, $body);
 
         $endPoint = $this->getUri('login');
 
@@ -42,6 +48,10 @@ class Autenticacao extends BaseResource
         return $this->jSessionId;
     }
 
+    /**
+     * Termina a sessão do usuário no Sankhya, liberando licença e recursos no servidor.
+     * @return bool True se deslogado sem erros
+     */
     public function logout()
     {
         $endPoint = $this->getUri('logout');

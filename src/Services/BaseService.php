@@ -1,13 +1,13 @@
 <?php
 
-namespace WillyMaciel\Sankhya\Resources;
+namespace WillyMaciel\Sankhya\Services;
 
 use WillyMaciel\Sankhya\Clients\Client;
 
 /**
  *
  */
-abstract class BaseResource
+abstract class BaseService
 {
     protected $client;
 
