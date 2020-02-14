@@ -22,8 +22,14 @@ class CacSp extends BaseService
         $endPoint = $this->getUri('incluirNota');
 
         $serviceName = $this->getServiceName('incluirNota');
-        $body = $this->makeServiceRequest($serviceName, $nota->toArray());
 
-        return $body;
+        $params = [
+            'body' => $this->makeServiceRequest($serviceName, $nota->toXml()),
+            'query' => ['serviceName' => $serviceName]
+        ];
+
+        $response = $this->client->post($endPoint, $params);
+
+        return $response;
     }
 }

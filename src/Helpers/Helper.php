@@ -35,3 +35,8 @@ function isoToUtf8($string)
 {
     return iconv('ISO-8859-1', 'UTF-8', $string);
 }
+
+function Utf8ToIso($string)
+{
+    return iconv('UTF-8', 'ISO-8859-1', $string);
+}

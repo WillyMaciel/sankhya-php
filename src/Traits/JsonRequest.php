@@ -7,7 +7,7 @@ namespace WillyMaciel\Sankhya\Traits;
  */
 trait JsonRequest
 {
-    public function makeServiceRequest($serviceName, $data)
+    public function makeServiceRequest(string $serviceName, array $data)
     {
         $body = [
             'serviceName' => $serviceName,

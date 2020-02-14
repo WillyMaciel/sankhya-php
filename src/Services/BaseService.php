@@ -26,7 +26,7 @@ abstract class BaseService
 
     protected function getUri(string $methodName)
     {
-        return static::MODULO . "/service.sbr?serviceName=" . STATIC::SERVICE_NAME . '.' . $methodName;
+        return static::MODULO . "/service.sbr";
     }
 
     public function jsonResponse($response)

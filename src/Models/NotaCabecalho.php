@@ -3,11 +3,13 @@
 namespace WillyMaciel\Sankhya\Models;
 
 use WillyMaciel\Sankhya\Interfaces\Arrayable;
+use WillyMaciel\Sankhya\Interfaces\Xmlable;
+use \DOMDocument;
 
 /**
  *
  */
-class NotaCabecalho implements Arrayable
+class NotaCabecalho implements Arrayable, Xmlable
 {
     private $NUNOTA;
     private $TIPMOV;
@@ -176,6 +178,38 @@ class NotaCabecalho implements Arrayable
         }
 
         return $array;
+    }
+
+    /**
+     * Retorna objeto como Xml
+     * @return String Xml em formato texto
+     */
+    public function toXml()
+    {
+        $dom = new DOMDocument();
+        $cab = $dom->createElement('cabecalho');
+
+        $dom->appendChild($cab);
+
+        foreach ($this as $key => $value)
+        {
+            //Cria custom fields
+            if($key == 'customFields')
+            {
+                foreach($value as $customKey => $customValue)
+                {
+                    $el = $dom->createElement($customKey, $customValue);
+                    $cab->appendChild($el);
+                }
+
+                continue;
+            }
+
+            $el = $dom->createElement($key, $value);
+            $cab->appendChild($el);
+        }
+
+        return $dom->saveXML($dom->documentElement);
     }
 }
 

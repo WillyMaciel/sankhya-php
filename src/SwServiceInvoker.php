@@ -47,6 +47,7 @@ class SwServiceInvoker
         $this->jSessionId = $autenticacao->login($nomeUsuario, $senha);
 
         $this->client->addHeaders(['Cookie' => "JSESSIONID=$this->jSessionId"]);
+        $this->client->addQuery(['mgeSession' => $this->jSessionId]);
     }
 
     public function logout()

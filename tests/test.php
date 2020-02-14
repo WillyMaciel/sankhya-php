@@ -26,7 +26,8 @@ $api->login('KOBI', 'admkobi12');
 
 $notaCabecalho = new NotaCabecalho();
 $notaCabecalho->setTipMov('P');
-$notaCabecalho->setDtNeg(date("d/m/Y"));
+//$notaCabecalho->setDtNeg(date("d/m/Y"));
+$notaCabecalho->setDtNeg('12/02/2020');
 $notaCabecalho->setCodTipVenda(234);
 $notaCabecalho->setCodParc(2190);
 $notaCabecalho->setCodTipOper(1033);
@@ -39,25 +40,31 @@ $notaCabecalho->setCustomField('ad_kobinumped', '');
 $notaCabecalho->setObservacao('Pedido criado pelo Package WillyMaciel\\Sankhya-php');
 $notaCabecalho->setCustomField('ad_obsintmob', '');
 
+//Incluir Nota
 $nota = new Nota($notaCabecalho);
+// $nota->informarPreco(true);
 
 $item = new NotaItem();
 $item->setCodProd(10961);
 $item->setCodVol('UN');
-$item->setQtdNeg(10);
+$item->setCodLocalOrig(0);
+$item->setQtdNeg(13);
+$item->setPercDesc(0);
+$item->setVlrUnit(50);
 
 $nota->addItem($item);
 
-dd($api->incluirNota($nota));
+$item = new NotaItem();
+$item->setCodProd(30068);
+$item->setCodVol('UN');
+$item->setCodLocalOrig(0);
+$item->setQtdNeg(13);
+$item->setPercDesc(0);
+$item->setVlrUnit(60);
 
+$nota->addItem($item);
 
-dump($notaCabecalho, $notaCabecalho->toArray());
-
-dump($nota, $nota->toArray());
-
-dump($item);
-
-
+dump($api->incluirNota($nota));
 
 //Logout do servidor
 //para liberar recursos e licença

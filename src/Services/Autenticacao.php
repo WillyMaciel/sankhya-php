@@ -32,17 +32,23 @@ class Autenticacao extends BaseService
         $this->interno = $interno;
         $this->interno2 = isValidMd5($interno) ? $interno : md5($nomusu . $interno);
 
+        $serviceName = $this->getServiceName('login');
+
         $body = [
             'NOMUSU'    => $this->nomusu,
             'INTERNO2'  => $this->interno2
         ];
-
-        $serviceName = $this->getServiceName('login');
         $body = $this->makeServiceRequest($serviceName, $body);
 
+        $params = [
+            'body' => $body,
+            'query' => [
+                'serviceName' => $serviceName
+            ]
+        ];
         $endPoint = $this->getUri('login');
 
-        $response = $this->client->get($endPoint, $body);
+        $response = $this->client->get($endPoint, $params);
         $this->jSessionId = $response->responseBody->jsessionid;
 
         return $this->jSessionId;
@@ -55,7 +61,14 @@ class Autenticacao extends BaseService
     public function logout()
     {
         $endPoint = $this->getUri('logout');
-        $response = $this->client->get($endPoint);
+
+        $params = [
+            'query' => [
+                'serviceName' => $this->getServiceName('logout')
+            ]
+        ];
+
+        $response = $this->client->get($endPoint, $params);
 
         if($response->status == 1)
         {

@@ -30,9 +30,12 @@ class DbExplorerSp extends BaseService
             'sql' => str_replace(array("\r", "\n"), '', $query)
         ];
 
-        $body = $this->makeServiceRequest($fullServiceName, $data);
+        $params = [
+            'body' => $this->makeServiceRequest($fullServiceName, $data),
+            'query' => ['serviceName' => $fullServiceName]
+        ];
 
-        $response = $this->client->get(self::getUri('executeQuery'), $body);
+        $response = $this->client->get(self::getUri('executeQuery'), $params);
 
         return $this->createCollection($response);
     }

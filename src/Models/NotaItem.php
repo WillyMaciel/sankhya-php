@@ -3,11 +3,12 @@
 namespace WillyMaciel\Sankhya\Models;
 
 use WillyMaciel\Sankhya\Interfaces\Arrayable;
-
+use WillyMaciel\Sankhya\Interfaces\Xmlable;
+use \DOMDocument;
 /**
  *
  */
-class NotaItem implements Arrayable
+class NotaItem implements Arrayable, Xmlable
 {
     private $NUNOTA;
     private $SEQUENCIA;
@@ -124,5 +125,25 @@ class NotaItem implements Arrayable
         ];
 
         return $array;
+    }
+
+    /**
+     * Retorna objeto como Xml
+     * @return String Xml em formato texto
+     */
+    public function toXml()
+    {
+        $dom = new DOMDocument();
+        $itemElement = $dom->createElement('item');
+
+        $dom->appendChild($itemElement);
+
+        foreach ($this as $key => $value)
+        {
+            $valueElement = $dom->createElement($key, $value);
+            $itemElement->appendChild($valueElement);
+        }
+
+        return $dom->saveXML($dom->documentElement);
     }
 }
