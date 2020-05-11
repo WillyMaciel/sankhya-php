@@ -39,7 +39,7 @@ $result = $api->dbExplorer('SELECT * FROM TSIUSU');
 dump($result);
 ```
 
-###CacSp - Incluir Nota
+### CacSp - Incluir Nota
 
 Primeiro deve-se criar o Cabeçalho da nota, necessário para criar uma Nota, em seguida podemos incluir itens na nota.
 Exemplo de inclusão de nota:
