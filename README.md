@@ -45,6 +45,10 @@ Primeiro deve-se criar o Cabeçalho da nota, necessário para criar uma Nota, em
 Exemplo de inclusão de nota:
 
 ```
+use WillyMaciel\Sankhya\Models\Nota;
+use WillyMaciel\Sankhya\Models\NotaCabecalho;
+use WillyMaciel\Sankhya\Models\NotaItem;
+use WillyMaciel\Sankhya\Services\CacSp;
 
 //Cria Cabeçalho
 $notaCabecalho = new NotaCabecalho();
